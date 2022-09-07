@@ -5,30 +5,26 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.example.byte.helper</groupId>
-    <artifactId>byte-helper</artifactId>
+    <groupId>org.example.byte.helper.plugin</groupId>
+    <artifactId>byte-helper-plugin</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
 
   <groupId>org.example.byte.helper.plugin</groupId>
-  <artifactId>byte-helper-plugin</artifactId>
+  <artifactId>tomcat-plugin</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <packaging>pom</packaging>
+  <packaging>jar</packaging>
 
   <name>byte-helper-plugin</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
-  <modules>
-    <module>tomcat-plugin</module>
-  </modules>
-
   <dependencies>
     <dependency>
-      <groupId>org.example.byte.helper</groupId>
-      <artifactId>byte-helper-core</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <groupId>org.apache.tomcat.embed</groupId>
+      <artifactId>tomcat-embed-core</artifactId>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 
