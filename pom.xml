@@ -4,13 +4,13 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.example.log.trace</groupId>
-  <artifactId>log-trace-java</artifactId>
+  <groupId>org.example.byte.helper</groupId>
+  <artifactId>byte-helper</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <packaging>pom</packaging>
 
-  <name>log-trace-java</name>
+  <name>byte-helper</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -27,8 +27,8 @@
   </properties>
 
   <modules>
-    <module>log-trace-core</module>
-    <module>log-trace-plugin</module>
+    <module>byte-helper-core</module>
+    <module>byte-helper-plugin</module>
   </modules>
 
 </project>
