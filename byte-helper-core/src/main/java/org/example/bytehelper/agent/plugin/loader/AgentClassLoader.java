@@ -16,8 +16,6 @@ import java.util.jar.JarFile;
 
 public class AgentClassLoader extends ClassLoader {
 
-    private final static String CLASS_PATH = "plugins";
-
     private static AgentClassLoader DEFAULT_LOADER;
 
     private File classpath;
@@ -41,7 +39,7 @@ public class AgentClassLoader extends ClassLoader {
     public AgentClassLoader(ClassLoader parent) {
         super(parent);
         File agentDictionary = new AgentPackagePath().findPath();
-        classpath = new File(agentDictionary, CLASS_PATH);
+        classpath = agentDictionary;
         System.out.println(classpath);
     }
 

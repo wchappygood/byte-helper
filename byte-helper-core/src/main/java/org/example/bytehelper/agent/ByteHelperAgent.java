@@ -1,26 +1,28 @@
 package org.example.bytehelper.agent;
 
-import java.io.File;
-import java.lang.instrument.Instrumentation;
-import java.util.List;
-
 import net.bytebuddy.ByteBuddy;
+import net.bytebuddy.agent.ByteBuddyAgent;
 import net.bytebuddy.agent.builder.AgentBuilder;
 import net.bytebuddy.description.NamedElement;
 import net.bytebuddy.description.type.TypeDescription;
 import net.bytebuddy.dynamic.DynamicType;
 import net.bytebuddy.dynamic.scaffold.TypeValidation;
 import net.bytebuddy.matcher.ElementMatcher;
-import net.bytebuddy.matcher.ElementMatchers;
 import net.bytebuddy.utility.JavaModule;
 import org.example.bytehelper.agent.plugin.AbstractClassEnhancePluginDefine;
 import org.example.bytehelper.agent.plugin.AgentPackagePath;
 import org.example.bytehelper.agent.plugin.PluginLoader;
 import org.example.bytehelper.agent.plugin.match.NameMatch;
 
+import java.io.File;
+import java.util.List;
+
 public class ByteHelperAgent {
 
-    public static void premain(String agentArgs, Instrumentation instrumentation) {
+    public static void installAgent() {
+
+        ByteBuddyAgent.install();
+
         PluginLoader pluginLoader = new PluginLoader();
         List<AbstractClassEnhancePluginDefine> abstractClassEnhancePluginDefines = pluginLoader.loadPlugins();
 
@@ -79,7 +81,7 @@ public class ByteHelperAgent {
                 .transform(transformer)
                 .with(AgentBuilder.RedefinitionStrategy.RETRANSFORMATION)
                 .with(new Listener())
-                .installOn(instrumentation);
+                .installOnByteBuddyAgent();
 
     }
 
