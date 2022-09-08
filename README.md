@@ -10,3 +10,9 @@
 mkdir ${user_path}/agent/plugins ，其中user_path自定义
 3. 核心包放在${user_path}/agent/，插件包放在${user_path}/agent/plugins/
 4. java -javaagent:${user_path}/agent/byte-helper-core-1.0-SNAPSHOT-jar-with-dependencies.jar -jar app.jar
+
+# 新增插件
+1. 在byte-helper-plugin新增module
+2. 继承抽象类AbstractClassEnhancePluginDefine实现抽象方法
+3. 实现接口InstanceMethodsInterceptor
+4. 配置plugin.def
