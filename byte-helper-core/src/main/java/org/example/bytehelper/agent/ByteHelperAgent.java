@@ -6,6 +6,7 @@ import java.util.List;
 
 import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.agent.builder.AgentBuilder;
+import net.bytebuddy.description.NamedElement;
 import net.bytebuddy.description.type.TypeDescription;
 import net.bytebuddy.dynamic.DynamicType;
 import net.bytebuddy.dynamic.scaffold.TypeValidation;
@@ -23,12 +24,19 @@ public class ByteHelperAgent {
         PluginLoader pluginLoader = new PluginLoader();
         List<AbstractClassEnhancePluginDefine> abstractClassEnhancePluginDefines = pluginLoader.loadPlugins();
 
-        ElementMatcher.Junction junction = ElementMatchers.not(ElementMatchers.isInterface());
+        ElementMatcher elementMatcher = new ElementMatcher<NamedElement>() {
+            @Override
+            public boolean matches(NamedElement namedElement) {
+                for (AbstractClassEnhancePluginDefine abstractClassEnhancePluginDefine : abstractClassEnhancePluginDefines) {
+                    NameMatch nameMatch = abstractClassEnhancePluginDefine.filterClass();
+                    if (namedElement.getActualName().equals(nameMatch.getClassName())) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        };
 
-        for (AbstractClassEnhancePluginDefine abstractClassEnhancePluginDefine : abstractClassEnhancePluginDefines) {
-            NameMatch nameMatch = abstractClassEnhancePluginDefine.filterClass();
-            junction.or(ElementMatchers.named(nameMatch.getClassName()));
-        }
 
         AgentBuilder.Transformer transformer = new AgentBuilder.Transformer() {
             @Override
@@ -67,7 +75,7 @@ public class ByteHelperAgent {
         final ByteBuddy byteBuddy = new ByteBuddy().with(TypeValidation.of(true));
 
         AgentBuilder agentBuilder = new AgentBuilder.Default(byteBuddy);
-        agentBuilder.type(junction)
+        agentBuilder.type(elementMatcher)
                 .transform(transformer)
                 .with(AgentBuilder.RedefinitionStrategy.RETRANSFORMATION)
                 .with(new Listener())
