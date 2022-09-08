@@ -22,6 +22,19 @@
     <version>1.0-SNAPSHOT</version>
 </dependency>
 ```
+3. 启动
+启动类加入
+```java
+public class Application {
+
+    public static void main(String[] args) {
+        ByteHelperAgent.installAgent();
+        SpringApplication.run(Application.class, args);
+
+    }
+
+}
+```
 
 # 新增插件
 1. 在byte-helper-plugin新增module
