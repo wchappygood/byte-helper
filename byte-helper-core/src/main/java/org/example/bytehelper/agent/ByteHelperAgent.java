@@ -10,7 +10,6 @@ import net.bytebuddy.dynamic.scaffold.TypeValidation;
 import net.bytebuddy.matcher.ElementMatcher;
 import net.bytebuddy.utility.JavaModule;
 import org.example.bytehelper.agent.plugin.AbstractClassEnhancePluginDefine;
-import org.example.bytehelper.agent.plugin.AgentPackagePath;
 import org.example.bytehelper.agent.plugin.PluginLoader;
 import org.example.bytehelper.agent.plugin.match.NameMatch;
 
@@ -101,7 +100,7 @@ public class ByteHelperAgent {
             File debuggingClassesRootPath = null;
             try {
                 if (debuggingClassesRootPath == null) {
-                    debuggingClassesRootPath = new File(new AgentPackagePath().findPath(), "/debugging");
+                    debuggingClassesRootPath = new File("/Users/admin/Desktop/debugging");
                     if (!debuggingClassesRootPath.exists()) {
                         debuggingClassesRootPath.mkdir();
                     }

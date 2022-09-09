@@ -27,6 +27,7 @@ public class PluginLoader {
         }
 
         List<AbstractClassEnhancePluginDefine> plugins = new ArrayList<AbstractClassEnhancePluginDefine>();
+
         for (PluginDefine pluginDefine : pluginDefines) {
             try {
                 AbstractClassEnhancePluginDefine abstractClassEnhancePluginDefine =
@@ -41,6 +42,7 @@ public class PluginLoader {
                 throw new RuntimeException(e);
             }
         }
+        System.out.println("获取插件数："+plugins.size());
 
         return plugins;
     }
