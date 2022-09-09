@@ -11,10 +11,12 @@ import java.net.URL;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Objects;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 public class AgentClassLoader extends ClassLoader {
+    public final static String EDF = "plugin.def";
 
     private static AgentClassLoader DEFAULT_LOADER;
 
@@ -129,28 +131,26 @@ public class AgentClassLoader extends ClassLoader {
         if (allJars == null) {
             synchronized (AgentClassLoader.class) {
                 if (allJars == null) {
-                    allJars = this.doGetJars();
+                    allJars = new LinkedList<>();
+                    if (classpath.exists() && classpath.isDirectory()) {
+                        String[] jarFileNames = classpath.list((dir, name) -> name.endsWith(".jar"));
+                        for (String filename : jarFileNames) {
+                            try {
+                                File file = new File(classpath, filename);
+                                JarFile jarFile = new JarFile(file);
+                                if (Objects.nonNull(jarFile.getJarEntry(EDF))){
+                                    Jar jar = new Jar(jarFile, file);
+                                    allJars.add(jar);
+                                }
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    }
                 }
             }
         }
         return allJars;
-    }
-
-    private LinkedList<Jar> doGetJars() {
-        LinkedList<Jar> jars = new LinkedList<>();
-        if (classpath.exists() && classpath.isDirectory()) {
-            String[] jarFileNames = classpath.list((dir, name) -> name.endsWith(".jar"));
-            for (String filename : jarFileNames) {
-                try {
-                    File file = new File(classpath, filename);
-                    Jar jar = new Jar(new JarFile(file), file);
-                    jars.add(jar);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        }
-        return jars;
     }
 
     private static class Jar {
