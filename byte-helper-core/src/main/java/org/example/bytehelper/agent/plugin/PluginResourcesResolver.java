@@ -9,11 +9,12 @@ import java.util.Enumeration;
 import java.util.List;
 
 public class PluginResourcesResolver {
+    private final static String EDF = "plugin.def";
 
     public List<URL> getResources() {
         List<URL> cfgUrlPaths = new ArrayList<>();
         try {
-            Enumeration<URL> urls = AgentClassLoader.getDefault().getResources(AgentClassLoader.EDF);
+            Enumeration<URL> urls = AgentClassLoader.getDefault().getResources(EDF);
             while (urls.hasMoreElements()) {
                 URL pluginUrl = urls.nextElement();
                 System.out.println(pluginUrl.getPath());

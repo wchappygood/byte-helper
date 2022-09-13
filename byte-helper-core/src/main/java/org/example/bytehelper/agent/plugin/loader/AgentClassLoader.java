@@ -1,7 +1,6 @@
 package org.example.bytehelper.agent.plugin.loader;
 
 public class AgentClassLoader extends ClassLoader {
-    public final static String EDF = "plugin.def";
 
     private static AgentClassLoader DEFAULT_LOADER;
 
