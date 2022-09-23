@@ -17,7 +17,7 @@ public class PluginResourcesResolver {
             Enumeration<URL> urls = AgentClassLoader.getDefault().getResources(EDF);
             while (urls.hasMoreElements()) {
                 URL pluginUrl = urls.nextElement();
-                System.out.println(pluginUrl.getPath());
+                System.out.println("plugin.def >>> " + pluginUrl.getPath());
                 cfgUrlPaths.add(pluginUrl);
             }
         } catch (IOException e) {
