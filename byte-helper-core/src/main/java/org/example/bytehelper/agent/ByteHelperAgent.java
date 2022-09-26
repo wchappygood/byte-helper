@@ -20,6 +20,9 @@ import org.example.bytehelper.agent.plugin.match.NameMatch;
 public class ByteHelperAgent {
 
     public static void premain(String agentArgs, Instrumentation instrumentation) {
+        if(agentArgs != null){
+            System.setProperty("agentArgs", agentArgs);
+        }
         PluginLoader pluginLoader = new PluginLoader();
         List<AbstractClassEnhancePluginDefine> abstractClassEnhancePluginDefines = pluginLoader.loadPlugins();
 

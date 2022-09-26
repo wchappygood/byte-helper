@@ -17,7 +17,10 @@ public class InstanceMethodsTarget {
                          @Origin Method method) throws Exception {
 
         try {
-            instanceMethodsInterceptor.beforeMethod(method, allArguments, method.getParameterTypes());
+            Object before = instanceMethodsInterceptor.beforeMethod(method, allArguments, method.getParameterTypes());
+            if(before != null){
+                return before;
+            }
         } catch (Throwable e) {
             System.out.println(e);
         }

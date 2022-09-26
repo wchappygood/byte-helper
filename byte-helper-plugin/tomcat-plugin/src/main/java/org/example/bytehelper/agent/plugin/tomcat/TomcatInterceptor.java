@@ -10,7 +10,7 @@ import java.util.Enumeration;
 public class TomcatInterceptor implements InstanceMethodsInterceptor {
 
     @Override
-    public void beforeMethod(Method method, Object[] allArguments, Class<?>[] argumentsTypes) {
+    public Object beforeMethod(Method method, Object[] allArguments, Class<?>[] argumentsTypes) {
         Request request = (Request) allArguments[0];
         String traceId = request.getHeader("traceId");
         System.out.println(traceId);
@@ -22,6 +22,7 @@ public class TomcatInterceptor implements InstanceMethodsInterceptor {
             final String name = names.nextElement();
             System.out.println(name);
         }
+        return null;
     }
 
     @Override
