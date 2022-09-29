@@ -22,6 +22,7 @@
 
   <modules>
     <module>tomcat-plugin</module>
+      <module>version-for-tomcat</module>
   </modules>
 
   <dependencies>
