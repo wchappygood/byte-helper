@@ -16,3 +16,6 @@ mkdir ${user_path}/agent/plugins ，其中user_path自定义
 2. 继承抽象类AbstractClassEnhancePluginDefine实现抽象方法
 3. 实现接口InstanceMethodsInterceptor
 4. 配置plugin.def
+
+# 插件读取环境变量配置
+byte_helper_${插件名称}_${变量名}=${变量值}

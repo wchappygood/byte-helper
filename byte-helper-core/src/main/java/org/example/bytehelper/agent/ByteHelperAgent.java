@@ -12,6 +12,7 @@ import net.bytebuddy.dynamic.DynamicType;
 import net.bytebuddy.dynamic.scaffold.TypeValidation;
 import net.bytebuddy.matcher.ElementMatcher;
 import net.bytebuddy.utility.JavaModule;
+import org.example.bytehelper.agent.config.Config;
 import org.example.bytehelper.agent.config.ConfigInitializer;
 import org.example.bytehelper.agent.plugin.AbstractClassEnhancePluginDefine;
 import org.example.bytehelper.agent.plugin.AgentPackagePath;
@@ -21,7 +22,11 @@ import org.example.bytehelper.agent.plugin.match.NameMatch;
 public class ByteHelperAgent {
 
     public static void premain(String agentArgs, Instrumentation instrumentation) {
-        ConfigInitializer.initializeConfig(agentArgs);
+        try {
+            ConfigInitializer.loadConfig(agentArgs);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
 
         PluginLoader pluginLoader = new PluginLoader();
         List<AbstractClassEnhancePluginDefine> abstractClassEnhancePluginDefines = pluginLoader.loadPlugins();
@@ -74,7 +79,7 @@ public class ByteHelperAgent {
             }
         };
 
-        final ByteBuddy byteBuddy = new ByteBuddy().with(TypeValidation.of(true));
+        final ByteBuddy byteBuddy = new ByteBuddy().with(TypeValidation.of(Config.Agent.IS_OPEN_DEBUGGING_CLASS));
 
         AgentBuilder agentBuilder = new AgentBuilder.Default(byteBuddy);
         agentBuilder.type(elementMatcher)
@@ -97,6 +102,10 @@ public class ByteHelperAgent {
                                      final JavaModule module,
                                      final boolean loaded,
                                      final DynamicType dynamicType) {
+
+            if (!Config.Agent.IS_OPEN_DEBUGGING_CLASS) {
+                return;
+            }
 
             File debuggingClassesRootPath = null;
             try {
