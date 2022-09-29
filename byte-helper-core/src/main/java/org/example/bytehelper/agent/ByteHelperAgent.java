@@ -12,6 +12,7 @@ import net.bytebuddy.dynamic.DynamicType;
 import net.bytebuddy.dynamic.scaffold.TypeValidation;
 import net.bytebuddy.matcher.ElementMatcher;
 import net.bytebuddy.utility.JavaModule;
+import org.example.bytehelper.agent.config.ConfigInitializer;
 import org.example.bytehelper.agent.plugin.AbstractClassEnhancePluginDefine;
 import org.example.bytehelper.agent.plugin.AgentPackagePath;
 import org.example.bytehelper.agent.plugin.PluginLoader;
@@ -20,6 +21,8 @@ import org.example.bytehelper.agent.plugin.match.NameMatch;
 public class ByteHelperAgent {
 
     public static void premain(String agentArgs, Instrumentation instrumentation) {
+        ConfigInitializer.initializeConfig(agentArgs);
+
         PluginLoader pluginLoader = new PluginLoader();
         List<AbstractClassEnhancePluginDefine> abstractClassEnhancePluginDefines = pluginLoader.loadPlugins();
 
