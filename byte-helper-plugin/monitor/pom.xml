@@ -9,9 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>version-for-tomcat</artifactId>
+    <artifactId>monitor</artifactId>
 
-    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>

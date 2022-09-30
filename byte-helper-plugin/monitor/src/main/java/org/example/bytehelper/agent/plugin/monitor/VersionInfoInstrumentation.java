@@ -1,4 +1,4 @@
-package org.example.bytehelper.agent.plugin.versionfortomcat;
+package org.example.bytehelper.agent.plugin.monitor;
 
 import org.example.bytehelper.agent.plugin.AbstractClassEnhancePluginDefineDefault;
 
@@ -12,7 +12,7 @@ public class VersionInfoInstrumentation extends AbstractClassEnhancePluginDefine
 
     private String ENHANCE_METHOD_NAME = "invoke";
 
-    private String INTERCEPT_CLASS = "org.example.bytehelper.agent.plugin.versionfortomcat.VersionInfoInterceptor";
+    private String INTERCEPT_CLASS = "org.example.bytehelper.agent.plugin.monitor.VersionInfoInterceptor";
 
     @Override
     public String getEnhanceClass() {

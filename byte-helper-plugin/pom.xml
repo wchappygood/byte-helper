@@ -21,8 +21,8 @@
   <url>http://www.example.com</url>
 
   <modules>
-    <module>tomcat-plugin</module>
-      <module>version-for-tomcat</module>
+      <module>tomcat-plugin</module>
+      <module>monitor</module>
   </modules>
 
   <dependencies>
