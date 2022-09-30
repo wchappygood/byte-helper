@@ -26,7 +26,7 @@ public class ConfigInitializer {
      *
      * @param configClass
      */
-    private static void initializeConfig(Class configClass, String parent) throws IllegalAccessException {
+    public static void initializeConfig(Class configClass, String parent) throws IllegalAccessException {
         if (AGENT_SETTINGS == null) {
             throw new RuntimeException("AGENT_SETTINGS未初始化");
         }
