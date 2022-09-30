@@ -6,7 +6,7 @@ package org.example.bytehelper.agent.plugin.monitor;
  * @date 2022/9/30 10:09
  */
 public class Config {
-    public static class Monitor {
+    public static class Version {
         public static String version_uri = "/versionInfo";
         public static String version_value = "unknown";
     }
