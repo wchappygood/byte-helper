@@ -32,8 +32,8 @@ public class VersionInfoInterceptor implements InstanceMethodsInterceptor {
             System.out.println("查询版本:"+branchOrTag);
             returnString((Response) allArguments[1], branchOrTag);
             ret = branchOrTag;
-        } else if(Config.Monitor.datasource_uri.equals(request.getRequestURI())){
-            String dataSource = Config.Monitor.datasource_value;
+        } else if(Config.Ds.datasource_uri.equals(request.getRequestURI())){
+            String dataSource = Config.Ds.datasource_value;
             System.out.println("查询数据源:"+dataSource);
             returnString((Response) allArguments[1], dataSource);
             ret = dataSource;

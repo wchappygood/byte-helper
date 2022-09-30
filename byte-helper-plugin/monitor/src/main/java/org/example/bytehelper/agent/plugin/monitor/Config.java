@@ -9,7 +9,9 @@ public class Config {
     public static class Monitor {
         public static String version_uri = "/versionInfo";
         public static String version_value = "unknown";
+    }
 
+    public static class Ds {
         public static String datasource_uri = "/dsInfo";
         public static String datasource_value = "unknown";
     }
