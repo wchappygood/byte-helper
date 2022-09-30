@@ -27,13 +27,13 @@ public class VersionInfoInterceptor implements InstanceMethodsInterceptor {
     public Object beforeMethod(Method method, Object[] allArguments, Class<?>[] argumentsTypes) {
         Object ret = null;
         Request request = (Request) allArguments[0];
-        if(Config.Version.uri.equals(request.getRequestURI())){
-            String branchOrTag = Config.Version.value;
+        if(Config.Monitor.Version.uri.equals(request.getRequestURI())){
+            String branchOrTag = Config.Monitor.Version.value;
             System.out.println("查询版本:"+branchOrTag);
             returnString((Response) allArguments[1], branchOrTag);
             ret = branchOrTag;
-        } else if(Config.Ds.uri.equals(request.getRequestURI())){
-            String dataSource = Config.Ds.value;
+        } else if(Config.Monitor.Ds.uri.equals(request.getRequestURI())){
+            String dataSource = Config.Monitor.Ds.value;
             System.out.println("查询数据源:"+dataSource);
             returnString((Response) allArguments[1], dataSource);
             ret = dataSource;
