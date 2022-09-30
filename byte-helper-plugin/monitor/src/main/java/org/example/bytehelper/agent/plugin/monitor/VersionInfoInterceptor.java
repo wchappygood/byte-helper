@@ -29,7 +29,6 @@ public class VersionInfoInterceptor implements InstanceMethodsInterceptor {
     public Object beforeMethod(Method method, Object[] allArguments, Class<?>[] argumentsTypes) {
         Object ret = null;
         Request request = (Request) allArguments[0];
-        System.out.println("uri:"+request.getRequestURI());
         if(Config.Monitor.version_uri.equals(request.getRequestURI())){
             String branchOrTag = Config.Monitor.version_value;
             System.out.println("查询版本:"+branchOrTag);
