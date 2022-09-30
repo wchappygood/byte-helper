@@ -31,12 +31,12 @@ public class VersionInfoInterceptor implements InstanceMethodsInterceptor {
         Request request = (Request) allArguments[0];
         System.out.println("uri:"+request.getRequestURI());
         if(Config.version_uri.equals(request.getRequestURI())){
-            String branchOrTag = Config.version_default_value;
+            String branchOrTag = Config.version_value;
             System.out.println("查询版本:"+branchOrTag);
             returnString((Response) allArguments[1], branchOrTag);
             ret = branchOrTag;
         } else if(Config.datasource_uri.equals(request.getRequestURI())){
-            String dataSource = Config.datasource_default_value;
+            String dataSource = Config.datasource_value;
             System.out.println("查询数据源:"+dataSource);
             returnString((Response) allArguments[1], dataSource);
             ret = dataSource;
