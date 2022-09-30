@@ -15,8 +15,6 @@ import java.lang.reflect.Method;
  * @date 2022/9/26 09:48
  */
 public class VersionInfoInterceptor implements InstanceMethodsInterceptor {
-    private static final String VERSION_URI = "/versionInfo";
-    private static final String VERSION_MARK_KEY = "branchOrTag";
     static {
         try {
             ConfigInitializer.initializeConfig(Config.class, null);
