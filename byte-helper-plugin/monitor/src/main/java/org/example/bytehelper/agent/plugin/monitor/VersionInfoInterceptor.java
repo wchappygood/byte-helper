@@ -19,7 +19,7 @@ public class VersionInfoInterceptor implements InstanceMethodsInterceptor {
     private static final String VERSION_MARK_KEY = "branchOrTag";
     static {
         try {
-            ConfigInitializer.initializeConfig(Config.class, "monitor");
+            ConfigInitializer.initializeConfig(Config.class, null);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
@@ -30,13 +30,13 @@ public class VersionInfoInterceptor implements InstanceMethodsInterceptor {
         Object ret = null;
         Request request = (Request) allArguments[0];
         System.out.println("uri:"+request.getRequestURI());
-        if(Config.version_uri.equals(request.getRequestURI())){
-            String branchOrTag = Config.version_value;
+        if(Config.Monitor.version_uri.equals(request.getRequestURI())){
+            String branchOrTag = Config.Monitor.version_value;
             System.out.println("查询版本:"+branchOrTag);
             returnString((Response) allArguments[1], branchOrTag);
             ret = branchOrTag;
-        } else if(Config.datasource_uri.equals(request.getRequestURI())){
-            String dataSource = Config.datasource_value;
+        } else if(Config.Monitor.datasource_uri.equals(request.getRequestURI())){
+            String dataSource = Config.Monitor.datasource_value;
             System.out.println("查询数据源:"+dataSource);
             returnString((Response) allArguments[1], dataSource);
             ret = dataSource;

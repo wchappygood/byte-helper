@@ -6,9 +6,11 @@ package org.example.bytehelper.agent.plugin.monitor;
  * @date 2022/9/30 10:09
  */
 public class Config {
-    public static String version_uri = "/versionInfo";
-    public static String version_value = "unknown";
+    public static class Monitor {
+        public static String version_uri = "/versionInfo";
+        public static String version_value = "unknown";
 
-    public static String datasource_uri = "/dsInfo";
-    public static String datasource_value = "unknown";
+        public static String datasource_uri = "/dsInfo";
+        public static String datasource_value = "unknown";
+    }
 }
