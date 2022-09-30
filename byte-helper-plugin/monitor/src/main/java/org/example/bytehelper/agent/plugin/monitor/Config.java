@@ -7,12 +7,12 @@ package org.example.bytehelper.agent.plugin.monitor;
  */
 public class Config {
     public static class Version {
-        public static String version_uri = "/versionInfo";
-        public static String version_value = "unknown";
+        public static String uri = "/versionInfo";
+        public static String value = "unknown";
     }
 
     public static class Ds {
-        public static String datasource_uri = "/dsInfo";
-        public static String datasource_value = "unknown";
+        public static String uri = "/dsInfo";
+        public static String value = "unknown";
     }
 }
